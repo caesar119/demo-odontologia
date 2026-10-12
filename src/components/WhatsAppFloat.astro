@@ -1,0 +1,19 @@
+---
+import Icon from './Icon.astro';
+import type { SiteConfig } from '../config/site.types';
+
+interface Props {
+  config: SiteConfig;
+}
+const { config } = Astro.props;
+---
+
+<a
+  href={`https://wa.me/${config.hoursLocation.whatsappNumber}`}
+  class="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-green-500 text-white shadow-lg hover:bg-green-600"
+  aria-label="Escribinos por WhatsApp"
+  target="_blank"
+  rel="noopener"
+>
+  <Icon name="whatsapp" class="h-7 w-7" />
+</a>

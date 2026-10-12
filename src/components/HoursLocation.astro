@@ -1,0 +1,52 @@
+---
+import Icon from './Icon.astro';
+import type { SiteConfig } from '../config/site.types';
+
+interface Props {
+  config: SiteConfig;
+}
+const { config } = Astro.props;
+---
+
+<section id="horarios" class="bg-ink/[0.03] py-16 sm:py-20 lg:py-24">
+  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+    <h2 class="section-heading">{config.hoursLocation.heading}</h2>
+
+    <div class="mt-10 grid gap-10 lg:grid-cols-2">
+      <div>
+        <h3 class="flex items-center gap-2 text-lg font-semibold text-ink">
+          <Icon name="clock" class="h-5 w-5 text-primary" /> Horarios
+        </h3>
+        <dl class="mt-4 divide-y divide-black/5 rounded-2xl border border-black/5 bg-white">
+          {config.hoursLocation.hours.map((row) => (
+            <div class="flex items-center justify-between px-5 py-3">
+              <dt class="font-medium text-ink/80">{row.day}</dt>
+              <dd class="text-ink/60">{row.hours}</dd>
+            </div>
+          ))}
+        </dl>
+
+        <div class="mt-6 space-y-3">
+          <a href={`tel:${config.hoursLocation.phoneHref}`} class="flex items-center gap-3 text-ink/80 hover:text-primary">
+            <Icon name="phone" class="h-5 w-5 text-primary" /> {config.hoursLocation.phoneDisplay}
+          </a>
+          <a href={`mailto:${config.hoursLocation.email}`} class="flex items-center gap-3 text-ink/80 hover:text-primary">
+            <Icon name="mail" class="h-5 w-5 text-primary" /> {config.hoursLocation.email}
+          </a>
+          <p class="flex items-start gap-3 text-ink/80">
+            <Icon name="map" class="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /> {config.hoursLocation.address}
+          </p>
+        </div>
+      </div>
+
+      <div class="aspect-[4/3] overflow-hidden rounded-2xl border border-black/5 shadow-sm sm:aspect-video">
+        <iframe
+          src={config.hoursLocation.mapEmbedSrc}
+          class="h-full w-full"
+          loading="lazy"
+          title={`Mapa de ubicación de ${config.meta.siteName}`}
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</section>

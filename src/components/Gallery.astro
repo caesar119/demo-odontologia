@@ -1,0 +1,27 @@
+---
+import { Image } from 'astro:assets';
+import type { SiteConfig } from '../config/site.types';
+
+interface Props {
+  config: SiteConfig;
+}
+const { config } = Astro.props;
+---
+
+<section id="galeria" class="section">
+  <h2 class="section-heading">{config.gallery.heading}</h2>
+  <p class="section-subheading">{config.gallery.subheading}</p>
+
+  <div class="mt-10 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-3">
+    {config.gallery.items.map((item, i) => (
+      <Image
+        src={item.photo}
+        alt={item.alt}
+        widths={[300, 500, 700]}
+        sizes="(min-width: 1024px) 360px, 50vw"
+        class={`aspect-[4/3] w-full rounded-2xl object-cover shadow-sm ${i === 0 ? 'col-span-2 aspect-[16/9] sm:col-span-1 sm:aspect-[4/3]' : ''}`}
+        loading="lazy"
+      />
+    ))}
+  </div>
+</section>

@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Services from '../components/Services.astro';
+import Team from '../components/Team.astro';
+import Gallery from '../components/Gallery.astro';
+import HoursLocation from '../components/HoursLocation.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppFloat from '../components/WhatsAppFloat.astro';
+import { siteConfig } from '../config/site';
+---
+
+<BaseLayout config={siteConfig}>
+  <Header config={siteConfig} />
+  <main>
+    <Hero config={siteConfig} />
+    <Services config={siteConfig} />
+    <Team config={siteConfig} />
+    <Gallery config={siteConfig} />
+    <HoursLocation config={siteConfig} />
+    <ContactForm config={siteConfig} />
+  </main>
+  <Footer config={siteConfig} />
+  <WhatsAppFloat config={siteConfig} />
+</BaseLayout>
